@@ -8,6 +8,6 @@ import java.io.UncheckedIOException;
 public class InvalidCoordinateException extends RuntimeException {
 
   public InvalidCoordinateException() {
-    super("Invalid coordinate.");
+    super("Coordenada inválida!");
   }
 }
