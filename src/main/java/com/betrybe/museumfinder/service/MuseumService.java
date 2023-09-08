@@ -2,6 +2,7 @@ package com.betrybe.museumfinder.service;
 
 import com.betrybe.museumfinder.database.MuseumFakeDatabase;
 import com.betrybe.museumfinder.exception.InvalidCoordinateException;
+import com.betrybe.museumfinder.exception.MuseumNotFoundException;
 import com.betrybe.museumfinder.model.Coordinate;
 import com.betrybe.museumfinder.model.Museum;
 import com.betrybe.museumfinder.util.CoordinateUtil;
@@ -28,14 +29,12 @@ public class MuseumService implements MuseumServiceInterface {
 
   @Override
   public Museum createMuseum(Museum museum) {
-    Coordinate coordinate = museum.getCoordinate();
-    Boolean isValid = CoordinateUtil.isCoordinateValid(coordinate);
+    Boolean isValid = CoordinateUtil
+        .isCoordinateValid(museum.getCoordinate());
 
-    if (isValid) {
-      return museumFakeDatabase.saveMuseum(museum);
-    }
+    if (!isValid) throw new InvalidCoordinateException();
 
-    throw new InvalidCoordinateException();
+    return museumFakeDatabase.saveMuseum(museum);
   }
 
   @Override
