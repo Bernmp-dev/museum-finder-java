@@ -32,7 +32,9 @@ public class MuseumService implements MuseumServiceInterface {
     Boolean isValid = CoordinateUtil
         .isCoordinateValid(museum.getCoordinate());
 
-    if (!isValid) throw new InvalidCoordinateException();
+    if (!isValid) {
+      throw new InvalidCoordinateException();
+    }
 
     return museumFakeDatabase.saveMuseum(museum);
   }
