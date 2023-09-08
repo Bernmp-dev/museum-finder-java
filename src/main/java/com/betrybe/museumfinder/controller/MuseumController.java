@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+/** MuseumController.*/
 @RestController
 @RequestMapping("/museums")
 public class MuseumController {
@@ -27,6 +28,7 @@ public class MuseumController {
     this.service = service;
   }
 
+  /** createMuseum. */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public MuseumDto createMuseum(@RequestBody MuseumCreationDto museumCreationDto) {
@@ -36,6 +38,7 @@ public class MuseumController {
     return ModelDtoConverter.modelToDto(createdMuseum);
   }
 
+  /** getClosestMuseum. */
   @GetMapping("/closest")
   @ResponseStatus(HttpStatus.OK)
   public MuseumDto getClosestMuseum(
