@@ -9,6 +9,7 @@ import com.betrybe.museumfinder.util.ModelDtoConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,4 +53,12 @@ public class MuseumController {
     return ModelDtoConverter.modelToDto(museum);
   }
 
+  /** getMuseum. */
+  @GetMapping("/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public MuseumDto getMuseum(@PathVariable Long id) {
+    Museum museum = service.getMuseum(id);
+
+    return ModelDtoConverter.modelToDto(museum);
+  }
 }
